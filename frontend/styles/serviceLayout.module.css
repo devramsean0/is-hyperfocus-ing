@@ -1,0 +1,11 @@
+.header {
+    @apply pl-4 py-2;
+}
+
+.bigHeaderText {
+    @apply text-4xl;
+}
+
+.smallHeaderText {
+    @apply text-xl;
+}

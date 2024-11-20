@@ -10,6 +10,10 @@
     @apply h-10 w-[28rem] bg-transparent p-0 m-0 text-black
 }
 
+.input {
+    @apply h-10 w-[30rem] bg-transparent p-0 m-0 text-black
+}
+
 .nextButton {
     @apply h-10 w-10 p-0 m-0
 }

@@ -1,7 +1,11 @@
-.mainContent {
-    @apply flex flex-col items-center justify-center h-screen;
-}
-
 .numList {
     @apply list-decimal pl-10
 }
+
+.titleText {
+    @apply text-7xl;
+}
+.descriptionText {
+    @apply text-2xl;
+}
+  

@@ -1,28 +1,24 @@
+@import url('https://fonts.googleapis.com/css2?family=Tektur:wght@400..900&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 :root {
   --background: #0C190E;
-  --action: 
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --action: #73FF88;
-  }
+  --action: #73FF88;
 }
 
 body {
   color: #fff;
   background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: "Tektur", Arial, Helvetica, sans-serif;
 }
 
-.titleText {
-  @apply text-7xl;
+.mainContent {
+  @apply flex flex-col items-center;
 }
-.descriptionText {
-  @apply text-2xl;
+
+.verticalCenter {
+  @apply justify-center;
 }

@@ -1,0 +1,16 @@
+.container {
+    @apply py-3;
+}
+
+.inputContainer {
+    @apply h-10 w-[30rem] rounded-full pl-2 p-0 m-0 flex bg-white
+}
+
+.inputWithNextButton {
+    @apply h-10 w-[28rem] bg-transparent p-0 m-0 text-black
+}
+
+.nextButton {
+    @apply h-10 w-10 p-0 m-0
+}
+

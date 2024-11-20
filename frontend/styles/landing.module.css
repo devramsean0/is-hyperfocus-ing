@@ -1,0 +1,7 @@
+.mainContent {
+    @apply flex flex-col items-center justify-center h-screen;
+}
+
+.numList {
+    @apply list-decimal pl-10
+}

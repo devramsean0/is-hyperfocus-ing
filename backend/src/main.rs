@@ -2,14 +2,17 @@ use std::{
     io::{prelude::*, BufReader}, net::{TcpListener, TcpStream}
 };
 
+use backend::ThreadPool;
 use url_search_params::parse_url_search_params;
 
 fn main() {
     let listener = TcpListener::bind("127.0.0.1:7878").unwrap();
-
+    let pool = ThreadPool::new(5);
     for stream in listener.incoming() {
         let stream = stream.unwrap();
-        handle_http_connection(stream);
+        pool.execute(|| {
+            handle_http_connection(stream);
+        });
         println!("Connection Established")
     }
     println!("Hello, world!");
@@ -52,9 +55,9 @@ fn handle_http_connection(mut stream: TcpStream) {
                 .read_to_string(&mut req_body)
                 .unwrap();
         }
-        println!("Req body: {req_body}");
         let parsed_req_body = parse_url_search_params(&req_body);
             // Respond
+
         let content = "Hello World!";
         let content_length = content.len();
         let response = format!("{status_line}\r\nAccess-Control-Allow-Origin: *\r\nContent-Length: {content_length}\r\n\r\n{content}");

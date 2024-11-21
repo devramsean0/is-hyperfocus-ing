@@ -3,6 +3,7 @@ import { TextInput } from "@/components/TextInput";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { BACKEND_API_ENDPOINT } from "@/constants";
+import { enableApplications } from "@/flags";
 
 export default function Apply() {
     const searchParams = useSearchParams();
@@ -21,26 +22,28 @@ export default function Apply() {
         <ServiceLayout
             subtitle="We just need a few details from you!"
         >
-            <main className="mainContent">
+            <main className="mainContent verticalCenter">
                 <form onSubmit={async (e) => {
                     e.preventDefault();
-                    console.log("submitting form");
-                    if (password !== passwordConfirm) {
-                        alert("Passwords do not match");
-                        return;
-                    }
-                    await fetch(`${BACKEND_API_ENDPOINT}/apply`, {
-                        method: "POST",
-                        headers: {
-                            "Content-Type": "application/x-www-form-urlencoded"
-                        },
-                        body: new URLSearchParams({
-                            username,
-                            name,
-                            email,
-                            password
+                    if (await enableApplications()) {
+                        console.log("submitting form");
+                        if (password !== passwordConfirm) {
+                            alert("Passwords do not match");
+                            return;
+                        }
+                        await fetch(`${BACKEND_API_ENDPOINT}/apply`, {
+                            method: "POST",
+                            headers: {
+                                "Content-Type": "application/x-www-form-urlencoded"
+                            },
+                            body: new URLSearchParams({
+                                username,
+                                name,
+                                email,
+                                password
+                            })
                         })
-                    })
+                    }
                 }}>
                     <TextInput label="your name" id="name" required onChange={(ctx) => {
                         setName(ctx.currentTarget.value);

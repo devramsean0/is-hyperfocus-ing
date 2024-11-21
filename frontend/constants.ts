@@ -1,0 +1,1 @@
+export const BACKEND_API_ENDPOINT = process.env.NODE_ENV == "development" ? "http://127.0.0.1:7878" : "https://backend.hyperfocus.ing"; // If dev: use localhost endpoint. If prod: use backend endpoint

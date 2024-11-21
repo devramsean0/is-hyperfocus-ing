@@ -2,6 +2,7 @@ import { ServiceLayout } from "@/components/ServiceLayout";
 import { TextInput } from "@/components/TextInput";
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
+import { BACKEND_API_ENDPOINT } from "@/constants";
 
 export default function Apply() {
     const searchParams = useSearchParams();
@@ -28,6 +29,18 @@ export default function Apply() {
                         alert("Passwords do not match");
                         return;
                     }
+                    await fetch(`${BACKEND_API_ENDPOINT}/apply`, {
+                        method: "POST",
+                        headers: {
+                            "Content-Type": "application/x-www-form-urlencoded"
+                        },
+                        body: new URLSearchParams({
+                            username,
+                            name,
+                            email,
+                            password
+                        })
+                    })
                 }}>
                     <TextInput label="your name" id="name" required onChange={(ctx) => {
                         setName(ctx.currentTarget.value);

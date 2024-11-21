@@ -15,8 +15,14 @@ export default function Apply() {
     const [passwordConfirm, setPasswordConfirm] = useState("");
 
     useEffect(() => {
-        // Set the username to the value of the username query parameter in a way that doesn't cause an infinite loop of updates
-        setUsername(searchParams.get("username") || "");
+        (async () => {
+        if (await enableApplications()) {
+            // Set the username to the value of the username query parameter in a way that doesn't cause an infinite loop of updates
+            setUsername(searchParams.get("username") || "");
+        } else {
+            alert("Ah! You're early! Applications aren't open yet though 😢")
+        }
+        })
     }, [searchParams]);
     return (
         <ServiceLayout
@@ -43,6 +49,8 @@ export default function Apply() {
                                 password
                             })
                         })
+                    } else {
+                        alert("Ah! You're early! Applications aren't open yet though 😢")
                     }
                 }}>
                     <TextInput label="your name" id="name" required onChange={(ctx) => {

@@ -8,7 +8,7 @@ export default function Home() {
     <main className="mainContent verticalCenter">
       <h1 className={LandingCSS.titleText}>is.hyperfocus.ing</h1>
       <p>A free subdomain and email forwarding service for Neurodivergent folks</p>
-      <TextInput placeholder="your username" id="username" nextButton onNext={(ctx) => {
+      <TextInput placeholder="choose your username" id="username" nextButton onNext={(ctx) => {
         const username = (document.getElementById("username") as HTMLInputElement).value;
         router.push(`/apply?username=${username}`);
       }}/>

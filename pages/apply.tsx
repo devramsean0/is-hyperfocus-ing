@@ -29,18 +29,16 @@ export default function Apply() {
                         alert("Passwords do not match");
                         return;
                     }
-                    await fetch(`${BACKEND_API_ENDPOINT}/apply`, {
+                    const res = await fetch(`/api/application`, {
                         method: "POST",
-                        headers: {
-                            "Content-Type": "application/x-www-form-urlencoded"
-                        },
-                        body: new URLSearchParams({
+                        body: JSON.stringify({
                             username,
                             name,
                             email,
                             password
                         })
                     })
+                    console.log(res);
                 }}>
                     <TextInput label="your name" id="name" required onChange={(ctx) => {
                         setName(ctx.currentTarget.value);
